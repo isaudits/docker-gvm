@@ -1,0 +1,23 @@
+# /etc/systemd/system/gvm.service
+
+# https://stackoverflow.com/questions/43671482/how-to-run-docker-compose-up-d-at-system-start-up
+
+[Unit]
+Description=Greenboone Vulnerability Manager Docker Compose Application Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Environment=COMPOSE_HTTP_TIMEOUT=200
+User=docker
+Group=docker
+WorkingDirectory=/data/
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose down
+TimeoutStartSec=0
+Restart=on-failure
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

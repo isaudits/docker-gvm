@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+
+echo "Starting Open Scanner Protocol daemon for OpenVAS..."
+exec s6-setuidgid abc ospd-openvas --foreground --config /config/ospd.conf

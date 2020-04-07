@@ -1,0 +1,71 @@
+#!/usr/bin/with-contenv bash
+
+# NOTE - see https://github.com/j1mr10rd4n/docker-debian-s6-postgres/blob/master/service-scripts/postgres-init
+
+mkdir -p "$PGDATA"
+chown -R postgres "$PGDATA"
+
+# look specifically for PG_VERSION, as it is expected in the DB dir
+if [ ! -s "$PGDATA/PG_VERSION" ]; then
+    su postgres -c /usr/lib/postgresql/"$PG_MAJOR"/bin/initdb
+
+    # check password first so we can output the warning before postgres messes it up
+    if [ "$POSTGRES_PASSWORD" ]; then
+        pass="PASSWORD '$POSTGRES_PASSWORD'"
+        authMethod=md5
+    else
+    #WARNING GOES HERE SOMEHOW
+        pass=
+        authMethod=trust
+    fi
+
+    { echo; echo "host all all 0.0.0.0/0 $authMethod"; } >> "$PGDATA/pg_hba.conf"
+
+    # internal start of server in order to allow set-up using psql-client       
+    # does not listen on TCP/IP and waits until start finishes
+    su postgres -c "/usr/lib/postgresql/"$PG_MAJOR"/bin/pg_ctl -D \"$PGDATA\" \
+        -o \"-c listen_addresses=''\" \
+        -w start"
+
+    : ${POSTGRES_USER:=postgres}
+    : ${POSTGRES_DB:=$POSTGRES_USER}
+    export POSTGRES_USER POSTGRES_DB
+
+    if [ "$POSTGRES_DB" != 'postgres' ]; then
+        #/usr/lib/postgresql/"$PG_MAJOR"/bin/psql --username postgres "CREATE DATABASE \"$POSTGRES_DB\" ;"
+		su -c "createdb $POSTGRES_DB" postgres
+    fi
+
+    /usr/lib/postgresql/"$PG_MAJOR"/bin/psql --username postgres -d "$POSTGRES_DB" -c "CREATE EXTENSION adminpack;"
+
+    if [ "$POSTGRES_USER" = 'postgres' ]; then
+        op='ALTER'
+    else
+        op='CREATE'
+    fi
+
+    /usr/lib/postgresql/"$PG_MAJOR"/bin/psql -U postgres -d postgres -c "$op USER \"$POSTGRES_USER\" WITH SUPERUSER $pass ;"
+
+#   for f in /docker-entrypoint-initdb.d/*; do
+#       case "$f" in
+#           *.sh)  echo "$0: running $f"; . "$f" ;;
+#           *.sql) echo "$0: running $f"; psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" < "$f" && echo ;;
+#           *)     echo "$0: ignoring $f" ;;
+#       esac
+#   done
+
+	# GVM specific database initialization tasks
+	su -c "createuser -DRS abc" postgres
+	su -c "psql --command='ALTER DATABASE $POSTGRES_DB OWNER TO abc;'" postgres
+	su -c "psql --dbname=$POSTGRES_DB --command='create role dba with superuser noinherit;'" postgres
+	su -c "psql --dbname=$POSTGRES_DB --command='grant dba to abc;'" postgres
+	su -c "psql --dbname=$POSTGRES_DB --command='create extension \"uuid-ossp\";'" postgres
+	
+    su postgres -c "/usr/lib/postgresql/"$PG_MAJOR"/bin/pg_ctl -D \"$PGDATA\" -m fast -w stop"
+    #set_listen_addresses '*'
+
+    echo
+    echo 'PostgreSQL init process complete; ready for start up.'
+    echo
+
+fi

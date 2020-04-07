@@ -1,0 +1,6 @@
+#!/bin/bash
+set -ueo pipefail
+
+docker push isaudits/gvm:openvas
+docker push isaudits/gvm:latest
+docker push isaudits/gvm:full

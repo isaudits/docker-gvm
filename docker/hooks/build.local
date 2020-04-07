@@ -1,0 +1,20 @@
+#!/bin/bash
+set -ueo pipefail
+
+# stolen from https://medium.com/microscaling-systems/labelling-automated-builds-on-docker-hub-f3d073fb8e1
+
+#docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
+#             --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+#             -t isaudits/gvm:build docker/build/.
+
+docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
+             --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+             -t isaudits/gvm:base docker/base/.
+
+docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
+             --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+             -t isaudits/gvm:openvas docker/openvas/.
+
+docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
+             --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+             -t isaudits/gvm:full -t isaudits/gvm:latest docker/full/.

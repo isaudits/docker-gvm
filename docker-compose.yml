@@ -1,0 +1,51 @@
+version: '3.4'
+
+services:
+  #Keeps containers up to date - https://containrrr.github.io/watchtower/
+  watchtower:
+    container_name: watchtower
+    hostname: watchtower
+    restart: always
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 4 * * *" --cleanup
+    
+  portainer:
+    image: portainer/portainer
+    hostname: portainer
+    container_name: portainer
+    restart: always
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer:/data
+      
+  gvm:
+    image: isaudits/gvm:full
+    ports:
+      - "8080:9392"
+    environment:
+      - UPDATE_ON_START=false
+      - PUID=1000
+      - PGID=100
+      - TZ=America/New_York
+      - GVM_USER=admin
+      - GVM_PASSWORD=admin
+    volumes:
+      #- ./data/database:/var/lib/postgresql/data
+      - database:/var/lib/postgresql/data
+      - plugins:/usr/local/var/lib/openvas/plugins
+      - cert-data:/usr/local/var/lib/gvm/cert-data
+      - scap-data:/usr/local/var/lib/gvm/scap-data
+      
+    tty: true
+
+
+volumes:
+  database: {}
+  plugins: {}
+  cert-data: {}
+  scap-data: {}

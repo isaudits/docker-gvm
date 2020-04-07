@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+if $UPDATE_ON_START ; then
+  bash /defaults/update.sh
+fi

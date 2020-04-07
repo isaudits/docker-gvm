@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+sleep 10
+
+exec s6-setuidgid abc tail -F /usr/local/var/log/gvm/*
