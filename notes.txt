@@ -9,13 +9,22 @@ https://sadsloth.net/post/install-gvm11-src_part1/
 https://github.com/j1mr10rd4n/docker-debian-s6-postgres
 
 CRON IN LINUXSERVER IMAGE:
-https://github.com/linuxserver/docker-webgrabplus
+    https://github.com/linuxserver/docker-webgrabplus
 
-https://community.greenbone.net/t/about-gvm-architecture/1231
 
-https://github.com/greenbone
-https://github.com/greenbone/gvm-libs/blob/master/INSTALL.md
-https://github.com/greenbone/gvmd/blob/master/INSTALL.md
-https://github.com/greenbone/gsa/blob/master/INSTALL.md
-https://github.com/greenbone/openvas/blob/master/INSTALL.md
-https://github.com/greenbone/ospd-openvas
+
+REPOS:
+    https://community.greenbone.net/t/about-gvm-architecture/1231
+    https://github.com/greenbone
+    https://github.com/greenbone/gvm-libs/blob/master/INSTALL.md
+    https://github.com/greenbone/gvmd/blob/master/INSTALL.md
+    https://github.com/greenbone/gsa/blob/master/INSTALL.md
+    https://github.com/greenbone/openvas/blob/master/INSTALL.md
+    https://github.com/greenbone/ospd-openvas
+
+ERROR MESSAGES FOR OSPD-GVMD MASTER/SLAVE COMMUNICATION
+    https://github.com/greenbone/ospd-openvas/issues/175
+    https://github.com/greenbone/ospd/issues/240
+
+GVM10 master/slave setup:
+    https://sadsloth.net/post/gmv10dockermasterslave/
