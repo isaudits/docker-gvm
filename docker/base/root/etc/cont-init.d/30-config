@@ -8,39 +8,14 @@
 	cp /defaults/update-cron /config/update-cron
 crontab -u abc /config/update-cron
 
-# ospd.conf
+# ospd.conf (note - have to manually specify an ospd.conf file on launch since not running as root to keep from erroring out)
 [[ ! -e /config/ospd.conf ]] && \
 	cp /defaults/ospd.conf /config/ospd.conf
 
-## set password for abc to unlock it and set sudo access
-#sed -i "/${USER_NAME} ALL.*/d" /etc/sudoers
-#if [ "$SUDO_ACCESS" == "true" ]; then
-#    if [ -n "$USER_PASSWORD" ] || [ -n "$USER_PASSWORD_FILE" -a -f "$USER_PASSWORD_FILE" ]; then
-#        echo "${USER_NAME} ALL=(ALL) ALL" >> /etc/sudoers
-#        echo "Sudo is enabled with password."
-#    else
-#        echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-#        echo "Sudo is enabled without password."
-#    fi
-#else
-#    echo "Sudo is disabled."
-#fi
-#[[ -n "$USER_PASSWORD_FILE" ]] && [[ -f "$USER_PASSWORD_FILE" ]] && \
-#    USER_PASSWORD=$(cat "$USER_PASSWORD_FILE") && \
-#    echo "User password is retrieved from file."
-#USER_PASSWORD=${USER_PASSWORD:-$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8};echo;)}
-#echo "${USER_NAME}:${USER_PASSWORD}" | chpasswd
-
-if [ -n "${SUDO_PASSWORD}" ]; then
-  echo "setting up sudo access"
-  if ! grep -q 'abc' /etc/sudoers; then
-    echo "adding abc to sudoers"
-    echo "abc ALL=(ALL:ALL) ALL" >> /etc/sudoers
-  fi
-  echo "setting sudo password"
-  echo -e "${SUDO_PASSWORD}\n${SUDO_PASSWORD}" | passwd abc
-fi
-
+# openvas.conf
+[[ ! -e /config/openvas.conf ]] && \
+	cp /defaults/openvas.conf /config/openvas.conf
+ln -s /config/openvas.conf /usr/local/etc/openvas/openvas.conf
 
 # generate certificates
 gvm-manage-certs -a
