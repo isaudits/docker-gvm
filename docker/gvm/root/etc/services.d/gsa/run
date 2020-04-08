@@ -1,4 +1,9 @@
 #!/usr/bin/with-contenv bash
 
+while  [ ! -S /usr/local/var/run/gvmd.sock ]; do
+	echo "Greenbone Security Assistant - waiting for GVMD..."
+	sleep 10
+done
+
 echo "Starting Greenbone Security Assistant..."
 exec s6-setuidgid abc gsad --foreground --verbose --listen=$GSA_HOST --port=$GSA_PORT
