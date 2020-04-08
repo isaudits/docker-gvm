@@ -25,6 +25,8 @@ services:
       
   gvm:
     image: isaudits/gvm
+    hostname: gvm
+    container_name: gvm
     ports:
       - "8080:9392"
     environment:
