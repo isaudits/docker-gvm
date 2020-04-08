@@ -28,7 +28,7 @@ gvm:
     hostname: gvmd
     container_name: gvmd
     ports:
-      - "8080:9392"
+      - "9391:9391"
     environment:
       - UPDATE_ON_START=false
       - PUID=1000
@@ -47,4 +47,7 @@ gvm:
 
 
 volumes:
+  database: {}
   plugins: {}
+  cert-data: {}
+  scap-data: {}
