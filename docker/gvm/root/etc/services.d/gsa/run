@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
 echo "Starting Greenbone Security Assistant..."
-exec s6-setuidgid abc gsad --foreground --verbose --http-only --no-redirect --listen=$GSA_HOST --port=$GSA_PORT
+exec s6-setuidgid abc gsad --foreground --verbose --listen=$GSA_HOST --port=$GSA_PORT

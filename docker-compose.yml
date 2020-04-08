@@ -28,7 +28,7 @@ services:
     hostname: gvm
     container_name: gvm
     ports:
-      - "8080:9392"
+      - "443:9392"
     environment:
       - UPDATE_ON_START=false
       - SCHEDULED_UPDATES=true
