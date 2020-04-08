@@ -9,6 +9,7 @@ COPY --from=isaudits/gvm:build /install/gvm_libs/ /usr/local/
 COPY root/ /
 
 ENV UPDATE_ON_START=false \
+    SCHEDULED_UPDATES=false \
     GVM_USER="admin" \
     GVM_PASSWORD="admin" \
     GVMD_HOST="0.0.0.0" \

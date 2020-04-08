@@ -31,6 +31,7 @@ services:
       - "8080:9392"
     environment:
       - UPDATE_ON_START=false
+      - SCHEDULED_UPDATES=true
       - PUID=1000
       - PGID=100
       - TZ=America/New_York
