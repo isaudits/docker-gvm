@@ -4,7 +4,7 @@ sleep 5
 echo "Attempting to migrate database and create default user"
 s6-setuidgid abc gvmd gvm-manage-certs -q -a &> /dev/nul || true
 s6-setuidgid abc gvmd --migrate || true
-s6-setuidgid abc gvmd --create-user=${GVM_USER} --password=${GVM_PASSWORD} || true
+s6-setuidgid abc gvmd --create-user=${SLAVE_USER} --password=${SLAVE_PASSWORD} || true
 
 while  [ ! -S /tmp/ospd.sock ]; do
 	echo "Greenbone Vulnerability Manager - waiting for OSPD..."

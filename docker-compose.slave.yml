@@ -35,8 +35,8 @@ gvm:
       - PUID=1000
       - PGID=100
       - TZ=America/New_York
-      - GVM_USER=admin
-      - GVM_PASSWORD=admin
+      - SLAVE_USER=scanner
+      - SLAVE_PASSWORD=changethisdamnpassword
     volumes:
       - ./data/config:/config
       - ./data/certificates/private:/usr/local/var/lib/gvm/private
