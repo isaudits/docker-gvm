@@ -23,6 +23,9 @@ ln -s /config/openvas.conf /usr/local/etc/openvas/openvas.conf
 # generate certificates
 gvm-manage-certs -a
 
+# disable THP for Redis
+echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled && echo 'never' > /sys/kernel/mm/transparent_hugepage
+
 chown -R abc:abc \
 	/config \
 	/defaults \
