@@ -106,13 +106,26 @@ RUN cd /install && \
 
 FROM lsiobase/ubuntu:bionic
 
-RUN mkdir /install
+#RUN mkdir /install
 
-COPY --from=build-gvm_libs /install/ /install/
-COPY --from=build-openvas_smb /install/ /install/
-COPY --from=build-gvmd /install/ /install/
-COPY --from=build-openvas_scanner /install/ /install/
-COPY --from=build-gsa /install/ /install/
+#COPY --from=build-gvm_libs /install/ /install/
+#COPY --from=build-openvas_smb /install/ /install/
+#COPY --from=build-gvmd /install/ /install/
+#COPY --from=build-openvas_scanner /install/ /install/
+#COPY --from=build-gsa /install/ /install/
+
+RUN mkdir /install && \
+    mkdir /install/gvm_libs && \
+    mkdir /install/openvas_smb && \
+    mkdir /install/gvmd && \
+    mkdir /install/openvas_scanner && \
+    mkdir /install/gsa
+
+COPY --from=build-gvm_libs /usr/local/ /install/gvm_libs
+COPY --from=build-openvas_smb /usr/local/ /install/openvas_smb
+COPY --from=build-gvmd /usr/local/ /install/gvmd
+COPY --from=build-openvas_scanner /usr/local/ /install/openvas_scanner
+COPY --from=build-gsa /usr/local/ /install/gsa
 
 
 

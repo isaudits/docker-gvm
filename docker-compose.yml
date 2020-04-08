@@ -24,7 +24,7 @@ services:
       - ./data/portainer:/data
       
   gvm:
-    image: isaudits/gvm:full
+    image: isaudits/gvm
     ports:
       - "8080:9392"
     environment:
@@ -35,6 +35,8 @@ services:
       - GVM_USER=admin
       - GVM_PASSWORD=admin
     volumes:
+      - ./data/certificates/private:/usr/local/var/lib/gvm/private
+      - ./data/certificates/CA:/usr/local/var/lib/gvm/CA
       #- ./data/database:/var/lib/postgresql/data
       - database:/var/lib/postgresql/data
       - plugins:/usr/local/var/lib/openvas/plugins
@@ -42,7 +44,6 @@ services:
       - scap-data:/usr/local/var/lib/gvm/scap-data
       
     tty: true
-
 
 volumes:
   database: {}

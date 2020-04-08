@@ -1,21 +1,10 @@
-FROM lsiobase/ubuntu:bionic
+FROM lsiobase/ubuntu:bionic 
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    ca-certificates \
-    wget \
-    curl \
-    git \
-    sudo \
-    net-tools \
-    iputils-ping \
-    bzip2 \
-    cron \
-    rsync && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+COPY install-pkgs.sh /install-pkgs.sh
 
-COPY --from=isaudits/gvm:build /install/ /install/
+RUN bash /install-pkgs.sh
+
+COPY --from=isaudits/gvm:build /install/gvm_libs/ /usr/local/
 
 COPY root/ /
 

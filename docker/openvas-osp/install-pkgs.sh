@@ -23,26 +23,18 @@ apt-get update && apt-get upgrade -y
 { cat <<EOF
 bison
 gcc
-gnutls-bin
 libgcrypt20
 libglib2.0
 libgnutls28-dev
-libgpgme11
-libgpgme-dev
-libhiredis-dev
-libksba-dev
 libpcap-dev
 libsnmp-dev
 libssh-gcrypt-dev
-libxml2
 nmap
 python3-dev
 python3-pip
 python3-setuptools
 redis-server
 redis-tools
-rsync
-uuid
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 

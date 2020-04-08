@@ -23,19 +23,25 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data/portainer:/data
     
-  openvas:
-    image: isaudits/gvm:openvas
+gvm:
+    image: isaudits/gvm:gvmd
     ports:
-      - "9391:9391"
+      - "8080:9392"
     environment:
-      - UPDATE_ON_START=true
+      - UPDATE_ON_START=false
       - PUID=1000
       - PGID=100
       - TZ=America/New_York
+      - GVM_USER=admin
+      - GVM_PASSWORD=admin
     volumes:
+      - ./data/certificates/private:/usr/local/var/lib/gvm/private
+      - ./data/certificates/CA:/usr/local/var/lib/gvm/CA
+      #- ./data/database:/var/lib/postgresql/data
+      - database:/var/lib/postgresql/data
       - plugins:/usr/local/var/lib/openvas/plugins
-      
-    tty: true
+      - cert-data:/usr/local/var/lib/gvm/cert-data
+      - scap-data:/usr/local/var/lib/gvm/scap-data
 
 
 volumes:

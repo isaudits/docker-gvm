@@ -1,0 +1,21 @@
+https://github.com/Secure-Compliance-Solutions-LLC/GVM-Docker
+
+https://github.com/admirito/gvm-containers
+
+https://github.com/falkowich/gvm10-docker
+
+https://sadsloth.net/post/install-gvm11-src_part1/
+
+https://github.com/j1mr10rd4n/docker-debian-s6-postgres
+
+CRON IN LINUXSERVER IMAGE:
+https://github.com/linuxserver/docker-webgrabplus
+
+https://community.greenbone.net/t/about-gvm-architecture/1231
+
+https://github.com/greenbone
+https://github.com/greenbone/gvm-libs/blob/master/INSTALL.md
+https://github.com/greenbone/gvmd/blob/master/INSTALL.md
+https://github.com/greenbone/gsa/blob/master/INSTALL.md
+https://github.com/greenbone/openvas/blob/master/INSTALL.md
+https://github.com/greenbone/ospd-openvas

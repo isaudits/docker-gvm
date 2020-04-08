@@ -12,8 +12,8 @@ Environment=COMPOSE_HTTP_TIMEOUT=200
 User=docker
 Group=docker
 WorkingDirectory=/data/
-ExecStart=/usr/local/bin/docker-compose -f docker-compose.openvas.yml up
-ExecStop=/usr/local/bin/docker-compose -f docker-compose.openvas.yml down
+ExecStart=/usr/local/bin/docker-compose -f docker-compose.slave.yml up
+ExecStop=/usr/local/bin/docker-compose -f docker-compose.slave.yml down
 TimeoutStartSec=0
 Restart=on-failure
 StartLimitIntervalSec=60
