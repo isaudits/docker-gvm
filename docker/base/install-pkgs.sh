@@ -28,6 +28,7 @@ cron
 curl
 git
 iputils-ping
+traceroute
 net-tools
 sudo
 rsync
