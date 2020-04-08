@@ -41,6 +41,7 @@ services:
       - ./data/config:/config
       - ./data/certificates/private:/usr/local/var/lib/gvm/private
       - ./data/certificates/CA:/usr/local/var/lib/gvm/CA
+      - ./data/certificates/gnupg:/usr/local/var/lib/gvm/gvmd/gnupg
       #- ./data/database:/var/lib/postgresql/data
       - database:/var/lib/postgresql/data
       - plugins:/usr/local/var/lib/openvas/plugins
