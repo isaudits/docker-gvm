@@ -6,4 +6,4 @@ while  [ ! -S /usr/local/var/run/gvmd.sock ]; do
 done
 
 echo "Starting Greenbone Security Assistant..."
-exec s6-setuidgid abc gsad --foreground --verbose --listen=$GSA_HOST --port=$GSA_PORT
+exec s6-setuidgid abc gsad --foreground --verbose --listen=$GSA_HOST --port=$GSA_PORT --timeout=$GSA_TIMEOUT
