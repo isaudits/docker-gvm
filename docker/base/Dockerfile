@@ -16,6 +16,7 @@ ENV UPDATE_ON_START=false \
     SLAVE_PASSWORD="changethisdamnpassword" \
     GVMD_HOST="0.0.0.0" \
     GVMD_PORT="9391" \
+    GVMD_MAXROWS="5000" \
     OPENVAS_HOST="0.0.0.0" \
     OPENVAS_PORT="9391" \
     GSA_HOST="0.0.0.0" \

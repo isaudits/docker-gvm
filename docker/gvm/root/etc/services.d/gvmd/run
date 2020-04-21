@@ -6,6 +6,9 @@ s6-setuidgid abc gvmd gvm-manage-certs -q -a &> /dev/nul || true
 s6-setuidgid abc gvmd --migrate || true
 s6-setuidgid abc gvmd --create-user=${GVM_USER} --password=${GVM_PASSWORD} || true
 
+echo "Attempting to set max report rows to $GVMD_MAXROWS"
+s6-setuidgid abc gvmd --modify-setting 76374a7a-0569-11e6-b6da-28d24461215b --value $GVMD_MAXROWS || true
+
 echo "Updating IANA service names"
 s6-setuidgid abc wget -P /tmp https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml ;\
 s6-setuidgid abc gvm-portnames-update /tmp/service-names-port-numbers.xml
