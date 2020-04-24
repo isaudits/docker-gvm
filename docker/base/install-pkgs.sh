@@ -1,23 +1,5 @@
 #!/bin/bash
 
-# Borrowed from https://github.com/Secure-Compliance-Solutions-LLC/GVM-Docker/blob/master/install-pkgs.sh
-
-# Not sure about these!
-# geoip-database
-# graphviz
-# heimdal-dev
-# libpopt-dev
-# libnet-snmp-perl
-# perl-base
-# whiptail
-
-
-# Tools - check on these too
-# ike-scan
-# openssh-client
-# smbclient
-# wapiti
-
 apt-get update && apt-get upgrade -y
 
 # Base OS stuff
@@ -52,5 +34,16 @@ libxml2
 uuid
 EOF
 } | xargs apt-get install -yq --no-install-recommends
+
+# ospd requirements
+{ cat <<EOF
+ python3-pip
+python3-paramiko
+python3-lxml
+python3-defusedxml
+EOF
+} | xargs apt-get install -yq --no-install-recommends
+
+pip3 install ospd
 
 rm -rf /var/lib/apt/lists/*

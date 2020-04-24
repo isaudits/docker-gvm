@@ -1,18 +1,8 @@
 #!/bin/bash
 
-# Borrowed from https://github.com/Secure-Compliance-Solutions-LLC/GVM-Docker/blob/master/install-pkgs.sh
-
-#libmicrohttpd-dev
-#libgcrypt20
-#libgpgme11
-#libgpgme-dev
-#libhiredis-dev
-#libssh-gcrypt-dev
-#libxml2
-#uuid
-
 apt-get update && apt-get upgrade -y
 
+#gvmd dependencies
 { cat <<EOF
 gnutls-bin
 libglib2.0
