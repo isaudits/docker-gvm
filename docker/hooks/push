@@ -3,6 +3,6 @@ set -ueo pipefail
 
 docker push isaudits/gvm:build
 docker push isaudits/gvm:base
-docker push isaudits/gvm:openvas-osp
+docker push isaudits/gvm:openvas
 docker push isaudits/gvm:gvmd
 docker push isaudits/gvm:latest
