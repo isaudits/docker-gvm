@@ -4,8 +4,8 @@ COPY install-pkgs.sh /install-pkgs.sh
 
 RUN bash /install-pkgs.sh
 
-COPY --from=isaudits/gvm:build /install/gvm_libs/ /usr/local/
-COPY --from=isaudits/gvm:build /install/gvmd/bin/gvm-manage-certs /usr/local/bin/gvm-manage-certs
+COPY --from=isaudits/gvm:build-11 /install/gvm_libs/ /usr/local/
+COPY --from=isaudits/gvm:build-11 /install/gvmd/bin/gvm-manage-certs /usr/local/bin/gvm-manage-certs
 
 COPY root/ /
 
