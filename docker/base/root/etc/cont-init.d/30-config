@@ -8,7 +8,7 @@
 	cp /defaults/update-cron /config/update-cron
 
 if $SCHEDULED_UPDATES ; then
-  crontab -u abc /config/update-cron
+  crontab /config/update-cron
 fi
 
 # ospd.conf (note - have to manually specify an ospd.conf file on launch since not running as root to keep from erroring out)
