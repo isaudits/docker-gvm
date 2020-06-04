@@ -4,8 +4,8 @@
 # The default cron schedule can be edited by mounting /config as a volume and tweaking the default file
 
 # add cron file for running feed updates
-[[ ! -e /config/update-cron ]] && \
-	cp /defaults/update-cron /config/update-openvas.cron
+[[ ! -e /config/update-openvas.cron ]] && \
+	cp /defaults/update-openvas.cron /config/update-openvas.cron
 
 if $SCHEDULED_UPDATES ; then
   crontab /config/update-openvas.cron
