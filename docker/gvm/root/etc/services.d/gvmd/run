@@ -20,4 +20,4 @@ done
 
 echo "Starting Greenbone Vulnerability Manager..."
 
-exec s6-setuidgid abc gvmd --foreground
+exec s6-setuidgid abc gvmd --max-ips-per-target=$GVMD_MAX_IPS_PER_TARGET --foreground
