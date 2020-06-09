@@ -8,6 +8,10 @@ https://sadsloth.net/post/install-gvm11-src_part1/
 
 https://github.com/j1mr10rd4n/docker-debian-s6-postgres
 
+SMTP/SYSLOG/CRON:
+    https://github.com/ajoergensen/baseimage-alpine
+    https://github.com/ajoergensen/baseimage-centos
+
 CRON IN LINUXSERVER IMAGE:
     https://github.com/linuxserver/docker-webgrabplus
 

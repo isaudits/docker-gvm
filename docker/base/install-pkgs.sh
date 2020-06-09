@@ -15,6 +15,7 @@ net-tools
 sudo
 rsync
 wget
+ssmtp
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
@@ -37,7 +38,7 @@ EOF
 
 # ospd requirements
 { cat <<EOF
- python3-pip
+python3-pip
 python3-paramiko
 python3-lxml
 python3-defusedxml
