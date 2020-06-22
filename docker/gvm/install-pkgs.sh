@@ -11,6 +11,11 @@ libical2-dev
 nsis
 postgresql-$PG_MAJOR
 rsync
+smbclient
+sshpass
+scp
+snmp
+socat
 texlive-fonts-recommended
 texlive-latex-extra
 xml-twig-tools
