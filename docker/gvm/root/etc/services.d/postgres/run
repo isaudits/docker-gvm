@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
 echo "Starting PostgreSQL..."
-s6-setuidgid postgres /usr/lib/postgresql/$PG_MAJOR/bin/postgres 2> /var/run/s6/postgres-logs-fifo
+s6-setuidgid postgres /usr/lib/postgresql/$PG_MAJOR/bin/postgres
