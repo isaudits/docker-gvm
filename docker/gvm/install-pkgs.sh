@@ -13,7 +13,7 @@ postgresql-$PG_MAJOR
 rsync
 smbclient
 sshpass
-scp
+openssh-client
 snmp
 socat
 texlive-fonts-recommended
