@@ -60,6 +60,7 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
 	su -c "psql --dbname=$POSTGRES_DB --command='create role dba with superuser noinherit;'" postgres
 	su -c "psql --dbname=$POSTGRES_DB --command='grant dba to abc;'" postgres
 	su -c "psql --dbname=$POSTGRES_DB --command='create extension \"uuid-ossp\";'" postgres
+    su -c "psql --dbname=$POSTGRES_DB --command='create extension \"pgcrypto\";'" postgres
 	
     su postgres -c "/usr/lib/postgresql/"$PG_MAJOR"/bin/pg_ctl -D \"$PGDATA\" -m fast -w stop"
     #set_listen_addresses '*'

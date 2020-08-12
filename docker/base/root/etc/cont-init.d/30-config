@@ -15,6 +15,12 @@ fi
 [[ ! -e /config/ospd.conf ]] && \
 	cp /defaults/ospd.conf /config/ospd.conf
 
+sed -r -i 's|^(socket_mode[[:blank:]]*=[[:blank:]]*).*|\10o770|' /config/ospd.conf
+sed -r -i 's|^(unix_socket[[:blank:]]*=[[:blank:]]*).*|\1/var/run/ospd/ospd.sock|' /config/ospd.conf
+sed -r -i 's|^(lock_file_dir[[:blank:]]*=[[:blank:]]*).*|\1/usr/local/var/run|' /config/ospd.conf
+sed -r -i 's|^(pid_file[[:blank:]]*=[[:blank:]]*).*|\1/usr/local/var/run/openvas.pid|' /config/ospd.conf
+sed -r -i 's|^(log_file[[:blank:]]*=[[:blank:]]*).*|\1/usr/local/var/log/gvm/openvas.log|' /config/ospd.conf
+
 # openvas.conf
 [[ ! -e /config/openvas.conf ]] && \
 	cp /defaults/openvas.conf /config/openvas.conf
@@ -27,20 +33,25 @@ gvm-manage-certs -a
 echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled && echo 'never' > /sys/kernel/mm/transparent_hugepage
 
 # create directories if necessary
+mkdir -p /var/run/ospd
 mkdir -p /usr/local/var/lib/openvas/plugins
 mkdir -p /usr/local/var/lib/gvm/cert-data
 mkdir -p /usr/local/var/lib/gvm/scap-data
+mkdir -p /usr/local/var/lib/gvm/data-objects
 
 chown -R abc:abc \
 	/config \
 	/defaults \
+	/var/run/ospd \
 	/usr/local/var/run \
 	/usr/local/var/log \
 	/usr/local/var/lib/gvm/gvmd \
 	/usr/local/var/lib/gvm/private \
-	/usr/local/var/lib/gvm/CA
+	/usr/local/var/lib/gvm/CA \
+	/usr/local/share/gvm/gvmd/report_formats
 
 chown abc:abc \
 	/usr/local/var/lib/openvas/plugins \
 	/usr/local/var/lib/gvm/cert-data \
-	/usr/local/var/lib/gvm/scap-data
+	/usr/local/var/lib/gvm/scap-data \
+	/usr/local/var/lib/gvm/data-objects

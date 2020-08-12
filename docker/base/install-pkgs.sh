@@ -38,13 +38,16 @@ EOF
 
 # ospd requirements
 { cat <<EOF
+gcc
+python3-dev
 python3-pip
+python3-setuptools
 python3-paramiko
 python3-lxml
 python3-defusedxml
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
-pip3 install ospd~=2.0.1
+pip3 install ospd~=20.8.1
 
 rm -rf /var/lib/apt/lists/*

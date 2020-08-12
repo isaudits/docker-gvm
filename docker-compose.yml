@@ -24,7 +24,7 @@ services:
       - ./data/portainer:/data
       
   gvm:
-    image: isaudits/gvm:gvm-11
+    image: isaudits/gvm:gvm-20.8
     hostname: gvm
     container_name: gvm
     ports:
@@ -39,6 +39,7 @@ services:
       - plugins:/usr/local/var/lib/openvas/plugins
       - cert-data:/usr/local/var/lib/gvm/cert-data
       - scap-data:/usr/local/var/lib/gvm/scap-data
+      - data-objects:/usr/local/var/lib/gvm/data-objects
       
     tty: true
 
@@ -47,3 +48,4 @@ volumes:
   plugins: {}
   cert-data: {}
   scap-data: {}
+  data-objects: {}

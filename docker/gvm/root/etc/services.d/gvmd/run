@@ -9,11 +9,11 @@ s6-setuidgid abc gvmd --create-user=${GVM_USER} --password=${GVM_PASSWORD} || tr
 echo "Attempting to set max report rows to $GVMD_MAXROWS"
 s6-setuidgid abc gvmd --modify-setting 76374a7a-0569-11e6-b6da-28d24461215b --value $GVMD_MAXROWS || true
 
-echo "Updating IANA service names"
-s6-setuidgid abc wget -P /tmp https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml ;\
-s6-setuidgid abc gvm-portnames-update /tmp/service-names-port-numbers.xml
+UUID=$(s6-setuidgid abc gvmd --get-users --verbose | grep $GVM_USER | awk '{print $2}')
+echo "Granting feed import owner rights to default user ($GVM_USER) with UUID $UUID"
+s6-setuidgid abc gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value $UUID || true
 
-while  [ ! -S /tmp/ospd.sock ]; do
+while  [ ! -S /var/run/ospd/ospd.sock ]; do
 	echo "Greenbone Vulnerability Manager - waiting for OSPD..."
 	sleep 10
 done

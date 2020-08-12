@@ -7,14 +7,20 @@ sleep 5
 
 rm /usr/local/var/run/feed-update.lock || true
 
+echo "Updating GVMD data..."
+s6-setuidgid abc greenbone-feed-sync --type GVMD_DATA
+sleep 5
+
+rm /usr/local/var/run/feed-update.lock || true
+
 echo "Updating SCAP data..."
-s6-setuidgid abc greenbone-scapdata-sync
+s6-setuidgid abc greenbone-feed-sync --type SCAP
 sleep 5
 
 rm /usr/local/var/run/feed-update.lock || true
 
 echo "Updating CERT data..."
-s6-setuidgid abc greenbone-certdata-sync
+s6-setuidgid abc greenbone-feed-sync --type CERT
 sleep 5
 
 rm /usr/local/var/run/feed-update.lock || true

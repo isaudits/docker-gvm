@@ -7,10 +7,10 @@ COPY install-pkgs.sh /install-pkgs.sh
 
 RUN bash /install-pkgs.sh
 
-ENV gvm_libs_version="v11.0.1" \
-    openvas_scanner_version="v7.0.1" \
-    gvmd_version="v9.0.1" \
-    gsa_version="v9.0.1" \
+ENV gvm_libs_version="v20.8.0" \
+    openvas_scanner_version="v20.8.0" \
+    gvmd_version="v20.8.0" \
+    gsa_version="v20.8.0" \
     openvas_smb="v1.0.5"
 
 RUN echo "Starting Build..." && mkdir /build && mkdir /install
