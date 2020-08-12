@@ -45,6 +45,6 @@ python3-defusedxml
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
-pip3 install ospd
+pip3 install ospd~=2.0.1
 
 rm -rf /var/lib/apt/lists/*
