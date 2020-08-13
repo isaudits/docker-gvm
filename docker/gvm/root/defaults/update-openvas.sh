@@ -7,14 +7,14 @@ sleep 5
 
 rm /usr/local/var/run/feed-update.lock || true
 
-echo "Updating CERT data..."
-s6-setuidgid abc greenbone-certdata-sync
+echo "Updating SCAP data..."
+s6-setuidgid abc greenbone-scapdata-sync
 sleep 5
 
 rm /usr/local/var/run/feed-update.lock || true
 
-echo "Updating SCAP data..."
-s6-setuidgid abc greenbone-scapdata-sync
+echo "Updating CERT data..."
+s6-setuidgid abc greenbone-certdata-sync
 sleep 5
 
 rm /usr/local/var/run/feed-update.lock || true
