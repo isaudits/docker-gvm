@@ -33,9 +33,7 @@ services:
       - ./config/local.env
     volumes:
       - ./data/config:/config
-      - ./data/certificates/private:/usr/local/var/lib/gvm/private
-      - ./data/certificates/CA:/usr/local/var/lib/gvm/CA
-      - ./data/certificates/gnupg:/usr/local/var/lib/gvm/gvmd/gnupg
+      - ./data/gvm/var/lib:/usr/local/var/lib
       #- ./data/database:/var/lib/postgresql/data
       - database:/var/lib/postgresql/data
       - plugins:/usr/local/var/lib/openvas/plugins

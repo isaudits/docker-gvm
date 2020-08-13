@@ -39,14 +39,9 @@ openvas:
       - GVM_CA_CERTIFICATE_HOSTNAME=openvas
     volumes:
       - ./data/config:/config
-      - ./data/certificates/private:/usr/local/var/lib/gvm/private
-      - ./data/certificates/CA:/usr/local/var/lib/gvm/CA
-      - ./data/certificates/gnupg:/usr/local/var/lib/gvm/gvmd/gnupg
-      #- ./data/database:/var/lib/postgresql/data
-      - database:/var/lib/postgresql/data
+      - ./data/gvm/var/lib:/usr/local/var/lib
       - plugins:/usr/local/var/lib/openvas/plugins
 
 
 volumes:
-  database: {}
   plugins: {}
