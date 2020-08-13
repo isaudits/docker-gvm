@@ -26,6 +26,11 @@ gvm-manage-certs -a
 # disable THP for Redis
 echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled && echo 'never' > /sys/kernel/mm/transparent_hugepage
 
+# create directories if necessary
+mkdir -p /usr/local/var/lib/openvas/plugins
+mkdir -p /usr/local/var/lib/gvm/cert-data
+mkdir -p /usr/local/var/lib/gvm/scap-data
+
 chown -R abc:abc \
 	/config \
 	/defaults \
