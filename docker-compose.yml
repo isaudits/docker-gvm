@@ -24,7 +24,7 @@ services:
       - ./data/portainer:/data
       
   gvm:
-    image: isaudits/gvm
+    image: isaudits/gvm:gvm-11
     hostname: gvm
     container_name: gvm
     ports:

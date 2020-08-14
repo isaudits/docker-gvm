@@ -24,7 +24,7 @@ services:
       - ./data/portainer:/data
     
 openvas:
-    image: isaudits/gvm:openvas
+    image: isaudits/gvm:openvas-7
     hostname: openvas
     container_name: openvas
     ports:
