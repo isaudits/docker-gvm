@@ -12,7 +12,7 @@ services:
     command: --schedule "0 0 4 * * *" --cleanup
     
   portainer:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     hostname: portainer
     container_name: portainer
     restart: always
@@ -21,7 +21,7 @@ services:
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./data/portainer:/data
+      - portainer:/data
     
 openvas:
     image: isaudits/gvm:openvas-20.8
@@ -44,4 +44,4 @@ openvas:
 
 
 volumes:
-  plugins: {}
+  plugins: {}  portainer:{}
