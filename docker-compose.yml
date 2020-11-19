@@ -7,6 +7,8 @@ services:
     hostname: watchtower
     restart: always
     image: containrrr/watchtower
+    env_file:
+      - ./config/local.env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --schedule "0 0 4 * * *" --cleanup
@@ -32,21 +34,16 @@ services:
     env_file:
       - ./config/local.env
     volumes:
-      - ./data/config:/config
-      - ./data/gvm/var/lib:/usr/local/var/lib
-      #- ./data/database:/var/lib/postgresql/data
-      - database:/var/lib/postgresql/data
-      - plugins:/usr/local/var/lib/openvas/plugins
-      - cert-data:/usr/local/var/lib/gvm/cert-data
-      - scap-data:/usr/local/var/lib/gvm/scap-data
-      - data-objects:/usr/local/var/lib/gvm/data-objects
+      - ./config:/config
+      - gvm_data:/usr/local/var/lib
+      - gvm_db:/var/lib/postgresql/data
       
     tty: true
 
 volumes:
-  database: {}
-  plugins: {}
-  cert-data: {}
-  scap-data: {}
-  data-objects: {}  portainer:
+  portainer:
     name: portainer
+  gvm_data:
+    name: gvm_data
+  gvm_db:
+    name: gvm_db

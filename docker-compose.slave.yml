@@ -7,6 +7,8 @@ services:
     hostname: watchtower
     restart: always
     image: containrrr/watchtower
+    env_file:
+      - ./config/local.env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --schedule "0 0 4 * * *" --cleanup
@@ -29,19 +31,15 @@ openvas:
     container_name: openvas
     ports:
       - "9391:9391"
-    environment:
-      - UPDATE_ON_START=false
-      - SCHEDULED_UPDATES=true
-      - PUID=1000
-      - PGID=100
-      - TZ=America/New_York
-      - GVM_CERTIFICATE_HOSTNAME=openvas
-      - GVM_CA_CERTIFICATE_HOSTNAME=openvas
+    env_file:
+      - ./config/local.env
     volumes:
-      - ./data/config:/config
-      - ./data/gvm/var/lib:/usr/local/var/lib
-      - plugins:/usr/local/var/lib/openvas/plugins
+      - ./config:/config
+      - gvm_data:/usr/local/var/lib
 
 
 volumes:
-  plugins: {}  portainer:{}
+  volumes:
+  portainer:{}
+  gvm_data:
+    name: gvm_data
