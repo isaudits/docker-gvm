@@ -1,1 +1,1 @@
-1 1 * * * /bin/bash /defaults/update-openvas.sh
+0 0 * * * /bin/bash /defaults/update-openvas.sh

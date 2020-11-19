@@ -3,9 +3,17 @@
 # NOTE - based on https://github.com/linuxserver/docker-webgrabplus/blob/master/root/etc/cont-init.d/30-config
 # The default cron schedule can be edited by mounting /config as a volume and tweaking the default file
 
+# comment out PAM
+sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
+
 # add cron file for running feed updates
 [[ ! -e /config/update-openvas.cron ]] && \
 	cp /defaults/update-openvas.cron /config/update-openvas.cron
+
+# Check environment variable for cron job changes and update config file
+if [ "$UPDATE_CRON" ] ; then
+  echo "${UPDATE_CRON} /bin/bash /defaults/update-openvas.sh > /dev/stdout" > /config/update-openvas.cron
+fi
 
 if $SCHEDULED_UPDATES ; then
   crontab /config/update-openvas.cron
