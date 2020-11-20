@@ -15,7 +15,7 @@ if [ "$UPDATE_CRON" ] ; then
   echo "${UPDATE_CRON} /bin/bash /defaults/update-openvas.sh > /dev/stdout" > /config/update-openvas.cron
 fi
 
-if $SCHEDULED_UPDATES ; then
+if [ "$SCHEDULED_UPDATES" ] ; then
   crontab /config/update-openvas.cron
 fi
 
