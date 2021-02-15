@@ -48,6 +48,7 @@ python3-defusedxml
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
+pip3 install --upgrade pip
 pip3 install ospd~=20.8.1
 
 rm -rf /var/lib/apt/lists/*
