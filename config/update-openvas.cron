@@ -1,1 +1,1 @@
-1 1 * * * /bin/bash /defaults/update-openvas.sh
+1 1 * * * /bin/bash /defaults/update-openvas.sh > /dev/stdout
