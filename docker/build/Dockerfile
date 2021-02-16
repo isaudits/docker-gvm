@@ -1,4 +1,4 @@
-FROM lsiobase/ubuntu:bionic as build
+FROM lsiobase/ubuntu:focal as build
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
@@ -7,10 +7,10 @@ COPY install-pkgs.sh /install-pkgs.sh
 
 RUN bash /install-pkgs.sh
 
-ENV gvm_libs_version="v20.8.0" \
-    openvas_scanner_version="v20.8.0" \
-    gvmd_version="v20.8.0" \
-    gsa_version="v20.8.0" \
+ENV gvm_libs_version="v20.8.1" \
+    openvas_scanner_version="v20.8.1" \
+    gvmd_version="v20.8.1" \
+    gsa_version="v20.8.1" \
     openvas_smb="v1.0.5"
 
 RUN echo "Starting Build..." && mkdir /build && mkdir /install
@@ -104,7 +104,7 @@ RUN cd /install && \
     tar cvzf gsa.tar.gz /usr/local/
 
 
-FROM lsiobase/ubuntu:bionic
+FROM lsiobase/ubuntu:focal
 
 #RUN mkdir /install
 

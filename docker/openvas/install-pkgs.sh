@@ -12,7 +12,7 @@ libpcap-dev
 libsnmp-dev
 libssh-gcrypt-dev
 nmap
-python-impacket
+python3-impacket
 redis-server
 redis-tools
 EOF
@@ -26,7 +26,7 @@ python3-packaging
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
-pip3 install ospd-openvas~=20.8.0
+pip3 install ospd-openvas~=20.8.1
 
 apt-get autoremove -y
 

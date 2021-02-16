@@ -1,11 +1,11 @@
-FROM lsiobase/ubuntu:bionic 
+FROM lsiobase/ubuntu:focal 
 
 COPY install-pkgs.sh /install-pkgs.sh
 
 RUN bash /install-pkgs.sh
 
-COPY --from=isaudits/gvm:build-20.8 /install/gvm_libs/ /usr/local/
-COPY --from=isaudits/gvm:build-20.8 /install/gvmd/bin/gvm-manage-certs /usr/local/bin/gvm-manage-certs
+COPY --from=isaudits/gvm:build-20.8.1 /install/gvm_libs/ /usr/local/
+COPY --from=isaudits/gvm:build-20.8.1 /install/gvmd/bin/gvm-manage-certs /usr/local/bin/gvm-manage-certs
 
 COPY root/ /
 
@@ -24,6 +24,6 @@ ENV UPDATE_ON_START=false \
     GSA_HOST="0.0.0.0" \
     GSA_PORT="9392" \
     GSA_TIMEOUT="600" \
-    PG_MAJOR="10" \
+    PG_MAJOR="12" \
     PGDATA="/var/lib/postgresql/data" \
     POSTGRES_DB="gvmd"

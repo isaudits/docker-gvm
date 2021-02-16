@@ -5,16 +5,18 @@ set -ueo pipefail
 
 docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
              --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-             -t isaudits/gvm:build-20.8 build/.
+             -t isaudits/gvm:build-20.8.1 build/.
 
 docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
              --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-             -t isaudits/gvm:base-20.8 base/.
+             -t isaudits/gvm:base-20.8.1 base/.
 
 docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
              --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-             -t isaudits/gvm:openvas-20.8 -t isaudits/gvm:openvas openvas/.
+             #-t isaudits/gvm:openvas-20.8.1 -t isaudits/gvm:openvas openvas/.
+             -t isaudits/gvm:openvas-20.8.1 openvas/.
 
 docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
              --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-             -t isaudits/gvm:gvm-20.8 -t isaudits/gvm:latest gvm/.
+             #-t isaudits/gvm:gvm-20.8.1 -t isaudits/gvm:latest gvm/.
+             -t isaudits/gvm:gvm-20.8.1 gvm/.

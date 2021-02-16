@@ -12,6 +12,13 @@ The sample compose file references an .env file for defining environment variabl
 at config/local.env; a sample .env file can also be found in the github repo.
 
 ## Version / upgrade notes
+
+### 20.8.1
+Upgraded base image to Ubuntu 20.04 (Focal) due to required dependency versions not being upgraded in
+18.04 (Bionic). This also results in an upgrade of Postgres from 10 to 12, which will require the GVM
+database to either be manually updated or recreated. 
+
+At this point, we have not found a simple way to perform an in-place upgrade of the database. 
 ### 20.8
 When upgrading from GVM 11, the system has to migrate default reports from those included
 with source of GVM 11 (/usr/local/share/gvm/gvmd/report_formats/) to the new feed based

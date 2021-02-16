@@ -46,14 +46,6 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
 
     /usr/lib/postgresql/"$PG_MAJOR"/bin/psql -U postgres -d postgres -c "$op USER \"$POSTGRES_USER\" WITH SUPERUSER $pass ;"
 
-#   for f in /docker-entrypoint-initdb.d/*; do
-#       case "$f" in
-#           *.sh)  echo "$0: running $f"; . "$f" ;;
-#           *.sql) echo "$0: running $f"; psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" < "$f" && echo ;;
-#           *)     echo "$0: ignoring $f" ;;
-#       esac
-#   done
-
 	# GVM specific database initialization tasks
 	su -c "createuser -DRS abc" postgres
 	su -c "psql --command='ALTER DATABASE $POSTGRES_DB OWNER TO abc;'" postgres
