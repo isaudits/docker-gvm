@@ -4,6 +4,8 @@ COPY install-pkgs.sh /install-pkgs.sh
 
 RUN bash /install-pkgs.sh
 
+RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
+
 COPY --from=isaudits/gvm:build-20.8.1 /install/gvmd/ /install/gsa/ /usr/local/
 
 #Grab report_formats from previous version so they can be migrated in case of an upgrade
