@@ -36,7 +36,7 @@ uuid
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
-# openvas requirements
+# gvm-libs requirements
 { cat <<EOF
 libnet-dev
 EOF
