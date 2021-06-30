@@ -40,11 +40,13 @@ libhiredis-dev
 libical-dev
 libksba-dev
 libmicrohttpd-dev
+libnet-dev
 libnet-snmp-perl
 libpcap-dev
 libpopt-dev
 libsnmp-dev
 libssh-gcrypt-dev
+libunistring-dev
 libxml2-dev
 openssh-client
 perl-base

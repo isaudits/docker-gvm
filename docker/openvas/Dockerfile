@@ -1,10 +1,10 @@
-FROM isaudits/gvm:base-20.8.2
+FROM isaudits/gvm:base-21.4
 
 COPY install-pkgs.sh /install-pkgs.sh
 
 RUN bash /install-pkgs.sh
 
-COPY --from=isaudits/gvm:build-20.8.2 /install/openvas_smb/ /install/openvas_scanner/ /usr/local/
+COPY --from=isaudits/gvm:build-21.4 /install/openvas_smb/ /install/openvas_scanner/ /usr/local/
 
 RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/openvas.conf && ldconfig
 

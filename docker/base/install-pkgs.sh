@@ -36,6 +36,12 @@ uuid
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
+# openvas requirements
+{ cat <<EOF
+libnet-dev
+EOF
+} | xargs apt-get install -yq --no-install-recommends
+
 # ospd requirements
 { cat <<EOF
 gcc
@@ -49,6 +55,6 @@ EOF
 } | xargs apt-get install -yq --no-install-recommends
 
 pip3 install --upgrade pip
-pip3 install ospd~=20.8.3
+pip3 install ospd~=21.4.1
 
 rm -rf /var/lib/apt/lists/*
