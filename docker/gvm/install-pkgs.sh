@@ -7,7 +7,7 @@ apt-get update && apt-get upgrade -y
 gnutls-bin
 libglib2.0
 libgnutls28-dev
-libical2-dev
+libical-dev
 nsis
 postgresql-$PG_MAJOR
 rsync

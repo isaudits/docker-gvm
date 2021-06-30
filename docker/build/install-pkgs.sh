@@ -37,7 +37,7 @@ libgnutls28-dev
 libgpgme11-dev
 libgpgme-dev
 libhiredis-dev
-libical2-dev
+libical-dev
 libksba-dev
 libmicrohttpd-dev
 libnet-snmp-perl
@@ -62,6 +62,7 @@ uuid-dev
 wget
 whiptail
 xsltproc
+xml-twig-tools
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 

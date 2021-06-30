@@ -11,7 +11,71 @@ found in the github repo at <https://github.com/isaudits/docker-gvm/blob/master/
 The sample compose file references an .env file for defining environment variables
 at config/local.env; a sample .env file can also be found in the github repo.
 
+## Environment variables
+The following environment variables can be defined in your docker-compose file or
+the referenced .env file, or can be passed into docker command line:
+
+- UPDATE_ON_START - run feed update script on launch
+- PUID - PID of non-root user (1000)
+- PGID - GID of non-root user (100)
+- TZ - Time Zone (America/New_York)
+- GVM_USER - username of default GVM user (admin)
+- GVM_PASSWORD - password for default GVM user (admin - can be changed in GSA later)
+- GSA_TIMEOUT - HTTP timeout for GSA (600)
+- SMTP_HOST - SMTP relay for emailing reports
+- SMTP_PORT - SMTP relay port
+- SMTP_MASQ - SMTP masquerade domain
+
+
 ## Version / upgrade notes
+
+### 20.8.1
+Upgraded base image to Ubuntu 20.04 (Focal) due to required dependency versions not being upgraded in
+18.04 (Bionic). This also results in an upgrade of Postgres from 10 to 12, which will require the GVM
+database to either be manually updated or recreated. 
+
+At this point, we have not found a simple way to perform an in-place upgrade of the database. 
+You can TRY the following steps at your own risk (this is unsupported and we will not accept any
+blame if you brick a production database nor will we respond to any support requests for assistance
+with upgrading a database).
+
+    # backup existing volume
+    docker volume rm gvm_db_bak
+    docker volume create gvm_db_bak
+    docker run --rm -it -v gvm_db:/from -v gvm_db_bak:/to alpine ash -c "cd /from ; cp -av . /to"
+
+    # export data to temp volume
+    docker volume rm gvm_db_temp
+    docker volume create gvm_db_temp
+
+    # use 20.8 image to export database
+    docker run --rm -it -v gvm_db:/var/lib/postgresql/data -v gvm_db_temp:/backup --entrypoint /bin/bash isaudits/gvm:gvm-20.8 
+
+    # dump gvm database 
+    s6-setuidgid postgres /usr/lib/postgresql/10/bin/postgres &
+    sudo -u abc pg_dump -O gvmd >/backup/gvmd_dump.sql
+    exit
+
+    # use 20.8.1 image to restore database
+    docker volume rm gvm_db
+    docker volume create gvm_db
+    docker run --rm -it -v gvm_db:/var/lib/postgresql/data -v gvm_db_temp:/backup --entrypoint /bin/bash isaudits/gvm:gvm-20.8.1
+
+    # initialize GVMD database and restore backup
+    cat /etc/cont-init.d/50-postgres | /bin/bash
+    s6-setuidgid postgres /usr/lib/postgresql/12/bin/postgres &
+    sudo -u abc psql -f /backup/gvmd_dump.sql gvmd
+    exit
+
+    # undo if something screws up
+    docker volume rm gvm_db
+    docker volume create gvm_db
+    docker run --rm -it -v gvm_db_bak:/from -v gvm_db:/to alpine ash -c "cd /from ; cp -av . /to"
+
+    # if all looks ok, delete temp volumes
+    docker volume rm gvm_db_temp
+    docker volume rm gvm_db_bak
+
 ### 20.8
 When upgrading from GVM 11, the system has to migrate default reports from those included
 with source of GVM 11 (/usr/local/share/gvm/gvmd/report_formats/) to the new feed based
@@ -29,22 +93,6 @@ on portainer, use command shell as user abc:
 gvmd --get-scanners
 gvmd --modify-scanner=<UUID> --scanner-host=/var/run/ospd/ospd.sock
 ```
-
-## Environment variables
-The following environment variables can be defined in your docker-compose file or
-the referenced .env file, or can be passed into docker command line:
-
-
-- UPDATE_ON_START - run feed update script on launch
-- PUID - PID of non-root user (1000)
-- PGID - GID of non-root user (100)
-- TZ - Time Zone (America/New_York)
-- GVM_USER - username of default GVM user (admin)
-- GVM_PASSWORD - password for default GVM user (admin - can be changed in GSA later)
-- GSA_TIMEOUT - HTTP timeout for GSA (600)
-- SMTP_HOST - SMTP relay for emailing reports
-- SMTP_PORT - SMTP relay port
-- SMTP_MASQ - SMTP masquerade domain
 
 --------------------------------------------------------------------------------
 
