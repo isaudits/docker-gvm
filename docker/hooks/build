@@ -13,10 +13,10 @@ docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
 
 docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
              --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-             #-t isaudits/gvm:openvas-20.8.1 -t isaudits/gvm:openvas openvas/.
-             -t isaudits/gvm:openvas-20.8.1 openvas/.
+             -t isaudits/gvm:openvas-20.8.1 -t isaudits/gvm:openvas openvas/.
+             #-t isaudits/gvm:openvas-20.8.1 openvas/.
 
 docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
              --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-             #-t isaudits/gvm:gvm-20.8.1 -t isaudits/gvm:latest gvm/.
-             -t isaudits/gvm:gvm-20.8.1 gvm/.
+             -t isaudits/gvm:gvm-20.8.1 -t isaudits/gvm:latest gvm/.
+             #-t isaudits/gvm:gvm-20.8.1 gvm/.
