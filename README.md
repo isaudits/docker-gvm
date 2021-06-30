@@ -30,6 +30,19 @@ the referenced .env file, or can be passed into docker command line:
 
 ## Version / upgrade notes
 
+### General
+When launching a new build that requires a DB schema migration, the migration will fail while there are any plugin
+updates being processed. This will likely occur if your instance is configured to download plugin updates on startup.
+
+If you see error messages in the console such as "SCAP sync already running" followed by
+"gvmd: cannot migrate SCAP database" then an ongoing sync is preventing the initial migration from taking place.
+GVMD will fail to launch until this process is completed, so just allow the process to complete and GVMD should
+eventually start.
+
+Major updates to schema could require some database tables to be reinitialized. GVMD will do this upon start, however
+GSA will not load until this process completes and the GVMD daemon is started.
+
+TLDR; upon first launch, just walk away for a bit and have a coffee!
 ### 21.4
 No known upgrade issues from 20.8.1 build or higher. Previous build notes apply to upgrades from previous builds. 
 Going forward, release build tags will only be updated to a new tag if minor release causes upgrade or dependency
