@@ -4,7 +4,7 @@ set -ueo pipefail
 # stolen from https://medium.com/microscaling-systems/labelling-automated-builds-on-docker-hub-f3d073fb8e1
 
 # NOTE - MAKE SURE WE GO BACK AND REMOVE OPENVAS AND LATEST TAGS FROM PREVIOUS VERSION WHEN WE PUSH THESE
-# TAGS TO THIS VERSION!!!
+# TAGS TO THIS VERSION; DELETE, DO NOT COMMENT TAG LINE OUT OR BUILD WILL FAIL
 
 docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
              --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
