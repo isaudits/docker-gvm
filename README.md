@@ -29,7 +29,7 @@ the referenced .env file, or can be passed into docker command line:
 
 ## Version / upgrade notes
 
-### 20.8.1
+### 20.8.1 / 20.8.2 / 20.8.3
 Upgraded base image to Ubuntu 20.04 (Focal) due to required dependency versions not being upgraded in
 18.04 (Bionic). This also results in an upgrade of Postgres from 10 to 12, which will require the GVM
 database to either be manually updated or recreated. 
