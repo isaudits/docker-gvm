@@ -1,7 +1,10 @@
 #!/bin/bash
 set -ueo pipefail
 
-docker push isaudits/gvm:build-21.4
-docker push isaudits/gvm:base-21.4
-docker push isaudits/gvm:openvas-21.4
-docker push isaudits/gvm:gvm-21.4
+# Uncomment these to push specific build tags after next release becomes "latest"
+# docker push isaudits/gvm:build-21.4
+# docker push isaudits/gvm:base-21.4
+# docker push isaudits/gvm:openvas-21.4
+# docker push isaudits/gvm:gvm-21.4
+
+docker push isaudits/gvm
