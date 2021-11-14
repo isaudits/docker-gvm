@@ -26,7 +26,7 @@ python3-packaging
 EOF
 } | xargs apt-get install -yq --no-install-recommends
 
-pip3 install ospd-openvas~=20.8.3
+pip3 install ospd-openvas~=20.8.4
 
 apt-get autoremove -y
 

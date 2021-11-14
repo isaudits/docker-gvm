@@ -1,4 +1,4 @@
-FROM isaudits/gvm:openvas-20.8.3
+FROM isaudits/gvm:openvas-20.8.4
 
 COPY install-pkgs.sh /install-pkgs.sh
 

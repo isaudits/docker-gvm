@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ueo pipefail
 
-docker push isaudits/gvm:build-20.8.3
-docker push isaudits/gvm:base-20.8.3
-docker push isaudits/gvm:openvas-20.8.3
-docker push isaudits/gvm:gvm-20.8.3
+docker push isaudits/gvm:build-20.8.4
+docker push isaudits/gvm:base-20.8.4
+docker push isaudits/gvm:openvas-20.8.4
+docker push isaudits/gvm:gvm-20.8.4
