@@ -55,6 +55,6 @@ EOF
 } | xargs apt-get install -yq --no-install-recommends
 
 pip3 install --upgrade pip
-pip3 install ospd~=21.4.2
+pip3 install ospd~=21.4.1
 
 rm -rf /var/lib/apt/lists/*
