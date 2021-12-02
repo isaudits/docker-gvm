@@ -47,7 +47,7 @@ TLDR; upon first launch, just walk away for a bit and have a coffee!
 No known upgrade issues from 20.8.1 build or higher. Previous build notes apply to upgrades from previous builds. 
 Going forward, release build tags will only be updated to a new tag if minor release causes upgrade or dependency
 issues as was the case from 20.8 to 20.8.1. Major releases (e.g. 21.4 vs 20.8 will continue to receive new build tags).
-### 20.8.1 / 20.8.2 / 20.8.3  20.8.4
+### 20.8.1 / 20.8.2
 Upgraded base image from 20.8 release to Ubuntu 20.04 (Focal) due to required dependency versions not being upgraded in
 18.04 (Bionic). This also results in an upgrade of Postgres from 10 to 12, which will require the GVM
 database to either be manually updated or recreated. 
