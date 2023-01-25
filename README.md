@@ -1,6 +1,10 @@
 # docker-gvm
 Docker implementation of Greenbone Vulnerability Management (GVM) / OpenVAS
 
+## THIS PROJECT IS NO LONGER ACTIVELY MAINTAINED
+Greenbone now maintains their own docker images of all GVM / Openvas components - 
+<https://hub.docker.com/u/greenbone>
+
 ## Source repo
 <https://github.com/isaudits/docker-gvm>
 
